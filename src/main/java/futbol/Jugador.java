@@ -1,19 +1,36 @@
 package futbol;
 
 public class Jugador extends Futbolista {
+
     public short golesMarcados;
     public byte dorsal;
-    
-    public Jugador(String nombre, int edad, String posicion, short golesMarcados, byte dorsal) {
+
+    public Jugador( String nombre,int edad, String posicion, short golesMarcados, byte dorsal) {
         super(nombre, edad, posicion);
-        this.golesMarcados = golesMarcados;
         this.dorsal = dorsal;
+        this.golesMarcados = golesMarcados;
     }
-    
+
     public Jugador() {
         super();
-        this.golesMarcados = 289;
-        this.dorsal = 7;
+        golesMarcados = 289;
+        dorsal = 7;
+    }
+
+    public byte getDorsal() {
+        return dorsal;
+    }
+
+    public void setDorsal(byte dorsal) {
+        this.dorsal = dorsal;
+    }
+
+    public short getGolesMarcados() {
+        return golesMarcados;
+    }
+
+    public void setGolesMarcados(short golesMarcados) {
+        this.golesMarcados = golesMarcados;
     }
 
     @Override
@@ -22,14 +39,18 @@ public class Jugador extends Futbolista {
     }
 
     @Override
-    public int compareTo(Futbolista o) {
-        return Integer.compare(this.getEdad(), o.getEdad());
-    }
-    
-    @Override
     public String toString() {
-        return "El futbolista " + getNombre() + " tiene " + getEdad() + 
-               ", y juega de " + getPosicion() + " con el dorsal " + dorsal + 
-               ". Ha marcado " + golesMarcados;
+        return "El futbolista " + getNombre()+" tiene "+getEdad() +", y juega de "+getPosicion() +" con el dorsal " + dorsal +
+                ". Ha marcado " + golesMarcados ;
     }
+    @Override
+    public int compareTo(Object o) {
+        Futbolista o1 = (Futbolista) o;
+        if (this.getEdad() - o1.getEdad() < 0) {
+            return -(this.getEdad() - o1.getEdad());
+        } else {
+            return this.getEdad() - o1.getEdad();
+        }
+    }
+
 }
